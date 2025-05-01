@@ -55,6 +55,14 @@ class TestBooksCollector:
             else:
                 assert name not in collector.books_genre
 
+    def test_get_book_genre_with_genre(self, collector):
+        collector.add_new_book('Книга 1')
+        collector.set_book_genre('Книга 1', 'Фантастика')
+        assert collector.get_book_genre('Книга 1') == 'Фантастика'
+
+    def test_get_book_genre_without_genre(self, collector):
+        collector.add_new_book('Книга без жанра')
+        assert collector.get_book_genre('Книга без жанра') == ''
 
     def test_set_book_genre_valid(self, collector):
         collector.add_new_book('Книга 1')
